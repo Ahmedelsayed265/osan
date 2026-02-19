@@ -1,5 +1,6 @@
 {% set ver = '0.1.036' %}
 <!doctype html>
+
 <html class="no-js" lang="{{ session.lang }}" dir="{{ session.locale.language.direction }}">
 <head>
   <meta charset="utf-8">
@@ -8,6 +9,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
   {% vitrin_head %}
 
+  
   {% if settings.header_logo %}
     {% set logoUrl = settings.header_logo %}
   {% else %}
@@ -18,6 +20,24 @@
   {% elif store.settings.branding.mobile_app_logo %}
     {% set logoUrlMobile = store.settings.branding.mobile_app_logo %}
   {% endif %}
+
+  {% set header_logo = settings.general_header_logo %}
+  {% set footer_logo = settings.general_footer_logo %}
+  {% set hide_loader = settings.loading_page_hide_loader %}
+  {% set products_banner = settings.categories_banners_products_banner %}
+  {% set banner_list = settings.categories_banners_categories_list %}
+  {% set lens_title = settings.single_product_title %}
+  {% set lens_url = settings.single_product_url %}
+  {% set product_price_default_label = settings.single_product_product_price_default_label %}
+  {% set lens_color_price_label = settings.single_product_lens_color_price_label %}
+  {% set lens_detail_price_label = settings.single_product_lens_detail_price_label %}
+  {% set package_price_label = settings.single_product_package_price_label %}
+  {% set total_price_label = settings.single_product_total_price_label %}
+  {% set branches_list = settings.branches_page_branches %}
+  {% set hide_Popup = settings.Popup_hide_Popup %}
+  {% set hide_Popup_cart = settings.Popup_cart_hide_Popup_cart %}
+  {% set Popup = settings.Popup_Popup_list %}
+  {% set Popup_cart = settings.Popup_cart_Popup_list %}
 
   <link rel="preload" as="image"
         href="{{ image_url(logoUrl, h=175, q=100) }}"
@@ -34,17 +54,10 @@
   {% endif %}
         
     
-  <link rel="shortcut icon" type="image/jpg" href={{ store.icon }}/>
-    {#<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Changa">#}
-    <!--jquery UI -->
+    <link rel="shortcut icon" type="image/jpg" href={{ store.icon }}/>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet"
-      media="print"
-      onload="this.onload=null;this.media='all'"
-      href="https://fonts.googleapis.com/css2?family={% if settings.fonts_name %}{{ settings.fonts_name }}{% else %}Changa{% endif %}:wght@300;400;500;700&display=swap">
-
-            <style>
+    <style>
         :root {
             --primary-color: {{store.settings.branding.colors.primary}};
             --text-color-primary-bg: {{store.settings.branding.colors.on_primary}};
@@ -70,19 +83,20 @@
             --secondary-color-alt11: #606060;
             --secondary-color-alt12: #767676;
             --secondary-color-alt13: #F8F8F8;
-            /* font-wieght */
+
             --font-weight-sizeOne: 400;
             --font-wieght-sizeTwo: 700;
             --font-wieght-sizeThree: 600;
-            /* font-size */
+
             --font-size-forteen: 1.167;
             --font-size-sixteen: 1.333;
             --font-size-eighteen: 1.5;
 
             --main-slider-height: 471.43px;
             --main-slider-sm-height: 115px;
+
+            --bs-dropdown-min-width: 12rem;
             
-            /* CDN Asset URLs */
             --heart-outlined-icon: url('{{ "heart-outlined.svg" | asset_url }}');
             --heart-filled-icon: url('{{ "heart-filled.svg" | asset_url }}');
         }
@@ -101,10 +115,8 @@
         }
     </style>
     
-    <link rel="stylesheet"
-          href="{{ 'icomoon.css?v=1.0.2' | asset_url }}"
-          media="print"
-          onload="this.media='all'">
+    <link rel="stylesheet" href="{{ 'icomoon.css?v=1.0.2' | asset_url }}" media="print" onload="this.media='all'">
+
     <noscript>
       <link rel="stylesheet" href="{{ 'icomoon.css?v=1.0.2' | asset_url }}">
     </noscript>
@@ -117,14 +129,11 @@
 
     <link rel="stylesheet" type="text/css" href="{{ 'bootstrap-fixes.css?v=1.11' | asset_url }}" />
 
-
     <link rel="stylesheet" type="text/css" href="{{ 'jquery-ui.min.css' | asset_url }}"  />
     <link rel="stylesheet" type="text/css" href="{{ 'jquery-ui.structure.min.css' | asset_url }}"  />
     <link rel="stylesheet" type="text/css" href="{{ 'jquery-ui.theme.min.css' | asset_url }}"  />
 
-    <link rel="stylesheet" type="text/css" href="{{ 'slick.css' | asset_url }}" />
-    <link rel="stylesheet" type="text/css" href="{{ 'slick-theme.css?v=1.08' | asset_url }}" />
-
+    <link rel="stylesheet" type="text/css" href="{{ 'swiper-bundle.min.css' | asset_url }}" />
     <link rel="stylesheet" type="text/css" href="{{ 'slide-menu.css' | asset_url }}" />
 
     <link rel="stylesheet" type="text/css" href="{{ 'slide-menu-style.css?v=1.16' | asset_url }}" />
@@ -132,6 +141,7 @@
     <link rel="stylesheet" href="{{ ('main.css?v=' ~ ver) | asset_url }}" />
 
     <link rel="stylesheet" type="text/css" href="{{ 'custom.css?v=1.148' | asset_url }}" />
+    <link rel="stylesheet" type="text/css" href="{{ 'responsive.css' | asset_url }}" />
 
     {% if session.lang == 'ar' %}
         <link rel="stylesheet" href="{{ 'main.rtl.css?v=1.25' | asset_url }}">
@@ -145,59 +155,96 @@
 
 </head>
 
-<body class="{{ session.locale.language.direction }}"
-      data-template="{{ session.template }}"
-        {% if template == 'category' and category is not none %} data-category-id="{{ category.id }}" {% endif %}
->
+<body class="{{ session.locale.language.direction }}" data-template="{{ session.template }}"
+    {% if template == 'category' and category is not none %} data-category-id="{{ category.id }}" {% endif %}>
 
 {% if store.editing_mode %}
   <link href="https://fonts.googleapis.com/css2?family={% if settings.fonts_name %}{{ settings.fonts_name }}{% else %}Changa{% endif %}:wght@300;400;500;700&display=swap" rel="stylesheet">
 {% endif %}
 
 <style>
-  body,html {
-    font-family: {% if settings.fonts_name %}{{ settings.fonts_name | replace('+', ' ') }}{% else %}'Changa'{% endif %}, sans-serif;
-  }
   :root {
-  {% if settings is defined %}
-        {% if settings.colors_header_background_color %}
-        --header-primary-color: {{ settings.colors_header_background_color }};
-        {% endif %}
-
-      {% if settings.colors_header_menu_background_color %}
-            --menu-header-primary-color: {{settings.colors_header_menu_background_color}};
-            --header-primary-brightness: brightness(100%);
-            {% elif settings.colors_header_background_color %}
-            --menu-header-primary-color: {{settings.colors_header_background_color}};
-            --header-primary-brightness: brightness(80%);
-        {% endif %}
-
-      {% if settings.colors_header_menu_text_color %}
-        --menu-header-text-color-primary-bg: {{settings.colors_header_menu_text_color}};
-      {% elif settings.colors_header_text_color %}
-        --menu-header-text-color-primary-bg: {{settings.colors_header_text_color}};
+			{% if settings.colors_header_background_color %}
+				--header-primary-color: {{settings.colors_header_background_color}};
+			{% endif %}
+			{% if settings.colors_header_menu_background_color %}
+				--menu-header-primary-color: {{settings.colors_header_menu_background_color}};
+				--header-primary-brightness: brightness(100%);
+			{% elif settings.colors_header_background_color %}
+				--menu-header-primary-color: {{settings.colors_header_background_color}};
+				--header-primary-brightness: brightness(80%);
+			{% endif %}
+			{% if settings.colors_header_menu_text_color %}
+				--menu-header-text-color-primary-bg: {{settings.colors_header_menu_text_color}};
+			{% elif settings.colors_header_text_color %}
+				--menu-header-text-color-primary-bg: {{settings.colors_header_text_color}};
+			{% endif %}
+			{% if settings.colors_header_text_color %}
+				--header-text-color-primary-bg: {{settings.colors_header_text_color}};
+			{% endif %}
+			{% if settings.colors_footer_background_color %}
+				--footer-primary-color: {{settings.colors_footer_background_color}};
+			{% endif %}
+			{% if settings.colors_footer_text_color %}
+				--footer-text-color-primary-bg: {{settings.colors_footer_text_color}};
+			{% endif %}
+      {% if settings.colors_bottom_menu_background_color %}
+          --bottom-menu-background-color: {{ settings.colors_bottom_menu_background_color }};
+      {% else %}
+          --bottom-menu-background-color: #ffffff;
       {% endif %}
-
-        {% if settings.colors_header_text_color %}--header-text-color-primary-bg: {{settings.colors_header_text_color}};{% endif %}
-        {% if settings.colors_footer_background_color %}--footer-primary-color: {{settings.colors_footer_background_color}};{% endif %}
-        {% if settings.colors_footer_text_color %}--footer-text-color-primary-bg: {{settings.colors_footer_text_color}};{% endif %}
-      }
-  {% endif %}
+      {% if settings.colors_bottom_menu_text_color %}
+          --bottom-menu-text-color: {{ settings.colors_bottom_menu_text_color }};
+      {% else %}
+          --bottom-menu-text-color: #000000;
+      {% endif %}
+      {% if settings.colors_background_background_color %}
+          --body_background_color: {{ settings.colors_background_background_color }};
+      {% else %}
+          --body_background_color: #fff;
+      {% endif %}
+      {% if settings.loading_page_background_color %}
+          --loader_background_color: {{ settings.loading_page_background_color }};
+      {% else %}
+          --loader_background_color: #fff;
+      {% endif %}
+      {% if settings.colors_header_background_color_catg_menu %}
+          --background_color_catg_menu: {{ settings.colors_header_background_color_catg_menu }};
+      {% else %}
+          --background_color_catg_menu: #fff;
+      {% endif %}
+      {% if settings.colors_header_text_color_catg_menu %}
+          --text_color_catg_menu: {{ settings.colors_header_text_color_catg_menu }};
+      {% else %}
+          --text_color_catg_menu: #000;
+      {% endif %}
+		}
 </style>
 
-{% block top_body %}{% endblock %}
+{% block top_body %}
+  {% if not hide_loader %}
+    <div class="loader-container" id="loader-container">
+      <div class="loader-box">
+        {% set logoUrl = store.logo %}
+        <div class="logo-lodaer-box" style="background-image: url('{{ logoUrl }}')"></div>
+      </div>
+    </div>
+  {% endif %}
+{% endblock %}
 
 <div class="app d-flex flex-column visible">
     <div class="header">
         {% block header %}{% endblock %}
     </div>
-    <div class="main flex-grow-1 app-content"
-            {% if settings.colors_background_image %} style="background-repeat: repeat; background-image: url('{{ settings.colors_background_image }}');" {% endif %}>
+
+    <div class="main flex-grow-1 app-content">
         {% block main_content %}{% endblock %}
     </div>
+
     <div class="footer">
         {% block footer %}{% endblock %}
     </div>
+
     {% block footer_sticky %}{% endblock %}
 </div>
 
@@ -212,7 +259,7 @@
 <script src="{{ 'popper.min.js?v=1.0' | asset_url }}"></script>
 <script src="{{ 'bootstrap.min.js' | asset_url }}"></script>
 
-<script src="{{ 'slick.min.js' | asset_url }}"></script>
+<script src="{{ 'swiper-bundle.min.js' | asset_url }}"></script>
 <script src="{{ 'slide-menu.ie.js?v=1.06' | asset_url }}"></script>
 
 <script type="text/javascript" src="{{ ('main.js?v=' ~ ver) | asset_url }}" defer></script>
@@ -228,19 +275,28 @@
         var text_loyalty_options = '{{ _('For {points} get a discount {percentage}') }}';
         var store_currency_code = '{{ session.currency }}';
     </script>
+
     <script type='text/javascript' src="{{ ('layout_loyalty_points.js?v=' ~ ver) | asset_url }}"></script>
 
 {% endif %}
 
-{% block footer_scripts %}{% endblock %}
+{% if not hide_loader %}
+<script>
+	addEventListener("DOMContentLoaded", (event) => {
+		const loader = document.getElementById('loader-container');
+		if (loader) {
+			loader.remove();
+		}
+	});
+</script>
+{% endif %}
 
+{% block footer_scripts %}{% endblock %}
 
 {% include "vitrin:shared/region_settings_dialog.jinja" %}
 
 <script>
-  window.zidOpenRegionSettingDialog = () => {
-      region_settings_dialog.open()
-  }
+  window.zidOpenRegionSettingDialog = () => { region_settings_dialog.open() }
 </script>
 
 </body>

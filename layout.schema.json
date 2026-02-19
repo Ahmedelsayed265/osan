@@ -5,322 +5,401 @@
   },
   "groups": [
     {
-      "id": "fonts",
-      "icon": "fa fa-font",
+      "id": "general",
+      "icon": "font_awesome",
       "name": {
-        "ar": "الخطوط",
-        "en": "fonts"
+        "ar": "اعدادت عامة",
+        "en": "general settings"
       },
       "settings": [
         {
-          "id": "name",
-          "type": "select",
+          "id": "header_logo",
+          "type": "image",
           "label": {
-            "ar": "اسم الخط",
-            "en": "Font name"
+            "ar": "شعار الهيدر باللون الأبيض",
+            "en": "Header white logo"
+          }
+        },
+        {
+          "id": "footer_logo",
+          "type": "image",
+          "label": {
+            "ar": "شعار الفوتر باللون الأبيض",
+            "en": "Footer white logo"
+          }
+        }
+      ]
+    },
+    {
+      "id": "loading_page",
+      "icon": "font_awesome",
+      "name": {
+        "ar": "صفحة التحميل",
+        "en": "loading page"
+      },
+      "settings": [
+        {
+          "id": "hide_loader",
+          "type": "checkbox",
+          "label": {
+            "ar": "اخفاء صفحة التحميل",
+            "en": "hide loader"
+          }
+        },
+        {
+          "id": "background_color",
+          "type": "color",
+          "label": {
+            "ar": "لون الخلفية",
+            "en": "Background color"
+          }
+        }
+      ]
+    },
+    {
+      "id": "categories_banners",
+      "icon": "font_awesome",
+      "name": {
+        "ar": "البنرات",
+        "en": "banners"
+      },
+      "settings": [
+        {
+          "id": "products_banner",
+          "type": "image",
+          "label": {
+            "ar": "بانر صفحة جميع المنتجات",
+            "en": "all products banner"
+          }
+        },
+        {
+          "id": "categories_list",
+          "type": "list",
+          "max_items": 50,
+          "label": {
+            "ar": "بانرات التصنيفات",
+            "en": "categories banners"
           },
-          "default": "Changa",
-          "options": [
+          "settings": [
             {
+              "id": "choose_category",
+              "type": "category",
               "label": {
-                "ar": "Changa",
-                "en": "Changa"
-              },
-              "value": "Changa"
+                "ar": "اختر التصنيف",
+                "en": "choose category"
+              }
             },
             {
+              "id": "banner",
+              "type": "image",
               "label": {
-                "ar": "Cairo",
-                "en": "Cairo"
-              },
-              "value": "Cairo"
-            },
-            {
-              "label": {
-                "ar": "Amiri",
-                "en": "Amiri"
-              },
-              "value": "Amiri"
-            },
-            {
-              "label": {
-                "ar": "Mada",
-                "en": "Mada"
-              },
-              "value": "Mada"
-            },
-            {
-              "label": {
-                "ar": "Tajawal",
-                "en": "Tajawal"
-              },
-              "value": "Tajawal"
-            },
-            {
-              "label": {
-                "ar": "Almarai",
-                "en": "Almarai"
-              },
-              "value": "Almarai"
-            },
-            {
-              "label": {
-                "ar": "El Messiri",
-                "en": "El Messiri"
-              },
-              "value": "El+Messiri"
-            },
-            {
-              "label": {
-                "ar": "Lalezar",
-                "en": "Lalezar"
-              },
-              "value": "Lalezar"
-            },
-            {
-              "label": {
-                "ar": "Scheherazade",
-                "en": "Scheherazade"
-              },
-              "value": "Scheherazade"
-            },
-            {
-              "label": {
-                "ar": "Lemonada",
-                "en": "Lemonada"
-              },
-              "value": "Lemonada"
-            },
-            {
-              "label": {
-                "ar": "Markazi",
-                "en": "Markazi"
-              },
-              "value": "Markazi+Text"
-            },
-            {
-              "label": {
-                "ar": "Lateef",
-                "en": "Lateef"
-              },
-              "value": "Lateef"
-            },
-            {
-              "label": {
-                "ar": "Reem Kufi",
-                "en": "Reem Kufi"
-              },
-              "value": "Reem+Kufi"
-            },
-            {
-              "label": {
-                "ar": "IBM Arabic",
-                "en": "IBM Arabic"
-              },
-              "value": "IBM+Plex+Sans+Arabic"
-            },
-            {
-              "label": {
-                "ar": "Harmattan",
-                "en": "Harmattan"
-              },
-              "value": "Harmattan"
-            },
-            {
-              "label": {
-                "ar": "Mirza",
-                "en": "Mirza"
-              },
-              "value": "Mirza"
-            },
-            {
-              "label": {
-                "ar": "Rakkas",
-                "en": "Rakkas"
-              },
-              "value": "Rakkas"
-            },
-            {
-              "label": {
-                "ar": "Katibeh",
-                "en": "Katibeh"
-              },
-              "value": "Katibeh"
-            },
-            {
-              "label": {
-                "ar": "Scheherazade New",
-                "en": "Scheherazade New"
-              },
-              "value": "Scheherazade+New"
-            },
-            {
-              "label": {
-                "ar": "Aref Ruqaa",
-                "en": "Aref Ruqaa"
-              },
-              "value": "Aref+Ruqaa"
-            },
-            {
-              "label": {
-                "ar": "Qahiri",
-                "en": "Qahiri"
-              },
-              "value": "Qahiri"
-            },
-            {
-              "label": {
-                "ar": "Jomhuria",
-                "en": "Jomhuria"
-              },
-              "value": "Jomhuria"
-            },
-            {
-              "label": {
-                "ar": "Kufam",
-                "en": "Kufam"
-              },
-              "value": "Kufam"
-            },
-            {
-              "label": {
-                "ar": "Vibes",
-                "en": "Vibes"
-              },
-              "value": "Vibes"
-            },
-            {
-              "label": {
-                "ar": "Noto Kufi",
-                "en": "Noto Kufi"
-              },
-              "value": "Noto+Kufi+Arabic"
-            },
-            {
-              "label": {
-                "ar": "Noto Naskh",
-                "en": "Noto Naskh"
-              },
-              "value": "Noto+Naskh+Arabic"
-            },
-            {
-              "label": {
-                "ar": "Noto Sans",
-                "en": "Noto Sans"
-              },
-              "value": "Noto+Sans+Arabic"
-            },
-            {
-              "label": {
-                "ar": "Noto Nastaliq Urdu",
-                "en": "Noto Nastaliq Urdu"
-              },
-              "value": "Noto+Nastaliq+Urdu"
+                "ar": "صورة البانر",
+                "en": "banner"
+              }
             }
           ]
         }
       ]
     },
     {
-      "id": "colors",
-      "icon": "fa fa-paint-brush",
+      "id": "single_product",
+      "icon": "font_awesome",
       "name": {
-        "ar": "الالوان",
-        "en": "Colors"
+        "ar": "صفحة المنتج",
+        "en": "Single Product"
       },
       "settings": [
         {
-          "id": "footer",
-          "icon": "font_awesome",
-          "type": "fieldset",
+          "id": "title",
+          "type": "text",
           "label": {
-            "ar": "اسفل الصفحة",
-            "en": "Header"
-          },
-          "expandable": true,
-          "settings": [
-            {
-              "id": "text_color",
-              "type": "color",
-              "label": {
-                "ar": "لون النص",
-                "en": "Text color"
-              }
-            },
-            {
-              "id": "background_color",
-              "type": "color",
-              "label": {
-                "ar": "لون الخلفية",
-                "en": "Text color"
-              }
-            }
-          ]
+            "ar": "عنوان بجانب تفصيل العدسة",
+            "en": "Lens details side title"
+          }
         },
         {
-          "id": "header",
-          "icon": "font_awesome",
-          "type": "fieldset",
+          "id": "url",
+          "type": "url",
           "label": {
-            "ar": "رأس الصفحة",
-            "en": "Header"
-          },
-          "expandable": true,
-          "settings": [
-            {
-              "id": "text_color",
-              "type": "color",
-              "label": {
-                "ar": "لون النص",
-                "en": "Text color"
-              }
-            },
-            {
-              "id": "menu_text_color",
-              "type": "color",
-              "label": {
-                "ar": "لون نص القائممة الرئيسية (اختياري)",
-                "en": "Text color"
-              }
-            },
-            {
-              "id": "background_color",
-              "type": "color",
-              "label": {
-                "ar": "لون الخلفية",
-                "en": "Background color"
-              }
-            },
-            {
-              "id": "menu_background_color",
-              "type": "color",
-              "label": {
-                "ar": "لون خلفية القائمة الرئيسية (اختياري)",
-                "en": "Menu color"
-              }
-            }
-          ]
+            "ar": "رابط العنوان",
+            "en": "Title link"
+          }
         },
         {
-          "id": "background",
-          "icon": "font_awesome",
-          "type": "fieldset",
+          "id": "product_price_default_label",
+          "type": "text",
           "label": {
-            "ar": "الخلفية",
-            "en": "Background"
+            "ar": "نص سعر المنتج الافتراضي",
+            "en": "Product default price label"
+          }
+        },
+        {
+          "id": "lens_color_price_label",
+          "type": "text",
+          "label": {
+            "ar": "نص سعر لون العدسات",
+            "en": "Lens color price label"
+          }
+        },
+        {
+          "id": "lens_detail_price_label",
+          "type": "text",
+          "label": {
+            "ar": "نص سعر تفصيل العدسات",
+            "en": "Lens detail price label"
+          }
+        },
+        {
+          "id": "package_price_label",
+          "type": "text",
+          "label": {
+            "ar": "نص سعر التغليف",
+            "en": "Gift wrapping price label"
+          }
+        },
+        {
+          "id": "total_price_label",
+          "type": "text",
+          "label": {
+            "ar": "نص السعر الإجمالي",
+            "en": "Total price label"
+          }
+        }
+      ]
+    },
+    {
+      "id": "branches_page",
+      "icon": "font_awesome",
+      "name": {
+        "ar": "صفحة العناوين",
+        "en": "Branches Page"
+      },
+      "settings": [
+        {
+          "id": "branches",
+          "type": "list",
+          "max_items": 100,
+          "label": {
+            "ar": "العناوين",
+            "en": "Branches"
           },
-          "expandable": true,
           "settings": [
             {
               "id": "image",
               "type": "image",
               "label": {
                 "ar": "الصورة",
-                "en": "Logo"
-              },
-              "info": {
-                "ar": "ارفع صورة بحجم 150 * 150 ",
-                "en": "This is an info text sample here"
+                "en": "Image"
+              }
+            },
+            {
+              "id": "content",
+              "type": "textarea",
+              "label": {
+                "ar": "المحتوى",
+                "en": "Content"
+              }
+            },
+            {
+              "id": "button_text",
+              "type": "text",
+              "label": {
+                "ar": "نص الزر",
+                "en": "Button text"
+              }
+            },
+            {
+              "id": "button_url",
+              "type": "text",
+              "label": {
+                "ar": "رابط الزر",
+                "en": "Button URL"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "Popup",
+      "icon": "font_awesome",
+      "name": {
+        "ar": "بوب اب اعلاني",
+        "en": "Popup"
+      },
+      "settings": [
+        {
+          "id": "hide_Popup",
+          "type": "checkbox",
+          "label": {
+            "ar": "إخفاء العنصر",
+            "en": "Hide element"
+          }
+        },
+        {
+          "id": "Popup_list",
+          "type": "list",
+          "max_items": 1,
+          "label": {
+            "ar": "اعلان",
+            "en": "Popup"
+          },
+          "settings": [
+            {
+              "id": "image",
+              "type": "image",
+              "label": {
+                "ar": "الصورة",
+                "en": "Image"
+              }
+            },
+            {
+              "id": "video",
+              "type": "video",
+              "label": {
+                "ar": "الفيديو",
+                "en": "Video"
+              }
+            },
+            {
+              "id": "title",
+              "type": "text",
+              "label": {
+                "ar": "العنوان الرئيسي",
+                "en": "title"
+              }
+            },
+            {
+              "id": "des",
+              "type": "textarea",
+              "label": {
+                "ar": "نص توضيحي",
+                "en": "Description"
+              }
+            },
+            {
+              "id": "btn_text",
+              "type": "text",
+              "label": {
+                "ar": "نص الزر",
+                "en": "Btn text"
+              }
+            },
+            {
+              "id": "btn_background_color",
+              "type": "color",
+              "label": {
+                "ar": "لون خلفية الزر",
+                "en": "button background color"
+              }
+            },
+            {
+              "id": "btn_text_color",
+              "type": "color",
+              "label": {
+                "ar": "لون نص الزر",
+                "en": "button text color"
+              }
+            },
+            {
+              "id": "url",
+              "type": "url",
+              "label": {
+                "ar": "الرابط",
+                "en": "Link"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "Popup_cart",
+      "icon": "font_awesome",
+      "name": {
+        "ar": "بوب اب اعلاني للسلة",
+        "en": "Popup Cart"
+      },
+      "settings": [
+        {
+          "id": "hide_Popup_cart",
+          "type": "checkbox",
+          "label": {
+            "ar": "إخفاء العنصر",
+            "en": "Hide element"
+          }
+        },
+        {
+          "id": "Popup_list",
+          "type": "list",
+          "max_items": 1,
+          "label": {
+            "ar": "اعلان",
+            "en": "Popup"
+          },
+          "settings": [
+            {
+              "id": "image",
+              "type": "image",
+              "label": {
+                "ar": "الصورة",
+                "en": "Image"
+              }
+            },
+            {
+              "id": "video",
+              "type": "video",
+              "label": {
+                "ar": "الفيديو",
+                "en": "Video"
+              }
+            },
+            {
+              "id": "title",
+              "type": "text",
+              "label": {
+                "ar": "العنوان الرئيسي",
+                "en": "title"
+              }
+            },
+            {
+              "id": "des",
+              "type": "textarea",
+              "label": {
+                "ar": "نص توضيحي",
+                "en": "Description"
+              }
+            },
+            {
+              "id": "btn_text",
+              "type": "text",
+              "label": {
+                "ar": "نص الزر",
+                "en": "Btn text"
+              }
+            },
+            {
+              "id": "btn_background_color",
+              "type": "color",
+              "label": {
+                "ar": "لون خلفية الزر",
+                "en": "button background color"
+              }
+            },
+            {
+              "id": "btn_text_color",
+              "type": "color",
+              "label": {
+                "ar": "لون نص الزر",
+                "en": "button text color"
+              }
+            },
+            {
+              "id": "url",
+              "type": "url",
+              "label": {
+                "ar": "الرابط",
+                "en": "Link"
               }
             }
           ]

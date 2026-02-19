@@ -6,6 +6,24 @@
   },
   "groups": [
     {
+      "id": "about_us",
+      "icon": "font_awesome",
+      "name": {
+        "ar": "عن المتجر",
+        "en": "About us"
+      },
+      "settings": [
+        {
+          "id": "des",
+          "type": "textarea",
+          "label": {
+            "ar": "النص",
+            "en": "Description"
+          }
+        }
+      ]
+    },
+    {
       "id": "links_1",
       "icon": "font_awesome",
       "name": {
@@ -22,6 +40,14 @@
           }
         },
         {
+          "id": "title",
+          "type": "text",
+          "label": {
+            "ar": "العنوان",
+            "en": "Title"
+          }
+        },
+        {
           "id": "links",
           "type": "list",
           "label": {
@@ -30,30 +56,22 @@
           },
           "settings": [
             {
-              "id": "url",
-              "type": "url",
-              "label": {
-                "ar": "الرابط",
-                "en": "Link"
-              }
-            },
-            {
               "id": "title",
               "type": "text",
               "label": {
                 "ar": "العنوان",
                 "en": "text"
               }
+            },
+            {
+              "id": "url",
+              "type": "url",
+              "label": {
+                "ar": "الرابط",
+                "en": "Link"
+              }
             }
           ]
-        },
-        {
-          "id": "title",
-          "type": "text",
-          "label": {
-            "ar": "العنوان",
-            "en": "Title"
-          }
         }
       ]
     },
@@ -74,6 +92,14 @@
           }
         },
         {
+          "id": "title",
+          "type": "text",
+          "label": {
+            "ar": "العنوان",
+            "en": "Title"
+          }
+        },
+        {
           "id": "links",
           "type": "list",
           "label": {
@@ -82,92 +108,22 @@
           },
           "settings": [
             {
-              "id": "url",
-              "type": "url",
-              "label": {
-                "ar": "الرابط",
-                "en": "Link"
-              }
-            },
-            {
               "id": "title",
               "type": "text",
               "label": {
                 "ar": "العنوان",
                 "en": "text"
               }
+            },
+            {
+              "id": "url",
+              "type": "url",
+              "label": {
+                "ar": "الرابط",
+                "en": "Link"
+              }
             }
           ]
-        },
-        {
-          "id": "title",
-          "type": "text",
-          "label": {
-            "ar": "العنوان",
-            "en": "Title"
-          }
-        }
-      ]
-    },
-    {
-      "id": "about_us",
-      "icon": "font_awesome",
-      "name": {
-        "ar": "عن المتجر",
-        "en": "About us"
-      },
-      "settings": [
-        {
-          "id": "des",
-          "type": "textarea",
-          "label": {
-            "ar": "النص",
-            "en": "Description"
-          }
-        },
-        {
-          "id": "title",
-          "type": "text",
-          "label": {
-            "ar": "العنوان",
-            "en": "Title"
-          }
-        }
-      ]
-    },
-    {
-      "id": "social_media",
-      "icon": "font_awesome",
-      "name": {
-        "ar": "وسائل التواصل",
-        "en": "Business location"
-      },
-      "settings": [
-        {
-          "id": "title",
-          "type": "text",
-          "label": {
-            "ar": "العنوان",
-            "en": "Title"
-          }
-        }
-      ]
-    },
-    {
-      "id": "business_location",
-      "icon": "font_awesome",
-      "name": {
-        "ar": "الموقع الجغرافي",
-        "en": "Business location"
-      },
-      "settings": [
-        {
-          "id": "title",
-          "type": "text",
-          "label": {
-            "ar": "العنوان",
-            "en": "Title"
-          }
         }
       ]
     }

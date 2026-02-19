@@ -1,0 +1,94 @@
+<section class="tp-slider-spicial-section tp-slider-img-auto" section-id="{{ sectionId }}"
+    style="{% if settings.hide_element %}display: none;{% endif %}">
+    <div class="container">
+        <div class="gradient-border">
+            <div class="tp-slider-spicial"
+                data-autoplay="{% if not settings.stop_autoplay %}true{% else %}false{% endif %}">
+                {% for slide in settings.spicial_slider %}
+                <div class="swiper-slide">
+                    <a href="{{ slide.url if slide.url else 'javascript:;' }}">
+                        {% if slide.video and slide.image %}
+                        <video width="100%" loop autoplay muted playsinline>
+                            <source src="{{ slide.video }}" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        {% elif slide.image %}
+                        <picture>
+                            {% if slide.image_mobile %}
+                            <source media="(max-width: 767px)" srcset="{{ image_url(slide.image_mobile, w=800) }}">
+                            {% endif %}
+                            <source media="(min-width: 768px)" srcset="{{ image_url(slide.image, w=1600) }}">
+                            <img loading="lazy" width="1600" height="700" class="lazy-img"
+                                src="{{ image_url(slide.image, w=1600) }}"
+                                alt="{{ slide.title if slide.title else 'banner' }}">
+                        </picture>
+                        {% elif slide.video %}
+                        <video width="100%" autoplay muted loop playsinline>
+                            {% if slide.video_mobile %}
+                            <source src="{{ slide.video_mobile }}" media="(max-width: 767px)" type="video/mp4">
+                            {% endif %}
+                            <source src="{{ slide.video }}" media="(min-width: 768px)" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        {% endif %}
+
+                        {% if slide.title or slide.sub_title or slide.btn_text %}
+                        <div class="box-text-info">
+                            {% if slide.title %}
+                            <h3 data-swiper-parallax="-500">{{ slide.title }}</h3>
+                            {% endif %}
+                            {% if slide.sub_title %}
+                            <p data-swiper-parallax="-300">{{ slide.sub_title }}</p>
+                            {% endif %}
+                            {% if slide.btn_text %}
+                            <button data-swiper-parallax="-100" class="tp-btn tp-btn-white">
+                                {{ slide.btn_text }}
+                            </button>
+                            {% endif %}
+                        </div>
+                        {% endif %}
+                    </a>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            var arrowNextClass = (window.appDirection === 'ltr') ? 'icon-keyboard_arrow_right' : 'icon-keyboard_arrow_left';
+            var arrowPrevClass = (window.appDirection === 'ltr') ? 'icon-keyboard_arrow_left' : 'icon-keyboard_arrow_right';
+
+            var $slider = $('[section-id={{ sectionId }}] .tp-slider-spicial');
+
+            if ($slider.length && !$slider.hasClass('slick-initialized')) {
+                var autoplayEnabled = $slider.attr("data-autoplay") === "true";
+
+                $slider.slick({
+                    slidesToShow: 1,
+                    slidesToScroll: 1,
+                    infinite: true,
+                    autoplay: autoplayEnabled,
+                    autoplaySpeed: 7000,
+                    arrows: true,
+                    dots: true,
+                    speed: 500,
+                    fade: true,
+                    rtl: !(window.appDirection === 'ltr'),
+                    nextArrow: '<button class="slick-next slick-arrow" aria-label="Next" type="button"><span class="' + arrowNextClass + '"></span></button>',
+                    prevArrow: '<button class="slick-prev slick-arrow" aria-label="Previous" type="button"><span class="' + arrowPrevClass + '"></span></button>'
+                });
+
+                $slider.on('afterChange', function (event, slick, currentSlide) {
+                    const totalSlides = slick.slideCount;
+                    const slidesToShow = slick.options.slidesToShow;
+
+                    if (currentSlide >= totalSlides - slidesToShow) {
+                        setTimeout(() => {
+                            $slider.slick('slickGoTo', 0);
+                        }, 3000);
+                    }
+                });
+            }
+        });
+    </script>
+</section>
