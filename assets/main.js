@@ -133,7 +133,7 @@ function getCartItemHTML(product) {
     `;
 }
 
-function addCartItem() {
+function deprecatedAddCartItem() {
   let cart = document.getElementById('cart-items');
   cart.innerHTML = '';
   cart.style.display = 'flex';
@@ -154,13 +154,17 @@ function removeCartItems() {
   cart.innerHTML = '';
 }
 
-function updateCartProducts(res) {
+function deprecatedSetCartCount(quantity) {
+  // Logic from setCartCount if it exists, or just a placeholder
+}
+
+function deprecatedUpdateCartProducts(res) {
   let added_product = res.data.cart.product;
   let i = cart_products.findIndex(item => item.product_id == added_product.product_id);
   i > -1 ? (cart_products[i] = added_product) : cart_products.push(added_product);
 
   let quantity = cart_products.reduce((acc, product) => acc + product.quantity, 0);
-  setCartCount(quantity);
+  deprecatedSetCartCount(quantity);
 }
 
 function removeFromCartProducts(res, product_id) {
@@ -171,10 +175,10 @@ function removeFromCartProducts(res, product_id) {
   }
 
   let quantity = cart_products.reduce((acc, product) => acc + product.quantity, 0);
-  setCartCount(quantity);
+  deprecatedSetCartCount(quantity);
 }
 
-function productCartAddToCart(elm, product_id) {
+function deprecatedProductCartAddToCart(elm, product_id) {
   if (!$('.add-to-cart-progress', elm).hasClass('d-none')) return;
 
   $('.add-to-cart-progress', elm).removeClass('d-none');
@@ -193,7 +197,7 @@ function productCartAddToCart(elm, product_id) {
   });
 }
 
-function addToCart(product_id, quantity, onCompleted) {
+function deprecatedAddToCart(product_id, quantity, onCompleted) {
   zid.cart
     .addProduct({
       product_id: product_id,
@@ -216,7 +220,7 @@ function removeFromCart(product_id) {
   let i = cart_products.findIndex(item => item.product_id == product_id_str);
 
   zid.cart
-    .removeProduct({ product_id: cart_products[i].id }, {showErrorNotification: true})
+    .removeProduct({ product_id: cart_products[i].id }, { showErrorNotification: true })
     .then(res => removeFromCartProducts(res, product_id_str));
 }
 
@@ -229,7 +233,7 @@ function fillWishlistItems(items) {
     const filledButton = container.querySelector(`[zid-visible-wishlist="${product.id}"]`);
     // Find the empty button (with zid-hidden-wishlist attribute or without filled class)
     const emptyButton = container.querySelector(`[zid-hidden-wishlist="${product.id}"]`) ||
-                        container.querySelector('.icon-heart-mask:not(.filled)');
+      container.querySelector('.icon-heart-mask:not(.filled)');
 
     // Show filled button, hide empty button
     if (filledButton) {
@@ -246,7 +250,7 @@ function addToWishlist(elm, productId) {
   const container = $(elm).closest('.add-to-wishlist');
 
   // Hide ALL heart buttons and show loader
-  container.find('.icon-heart-mask').each(function() {
+  container.find('.icon-heart-mask').each(function () {
     this.style.setProperty('display', 'none', 'important');
   });
   container.find('.loader').removeClass('d-none');
@@ -263,7 +267,7 @@ function addToWishlist(elm, productId) {
       // Hide the empty button, show the filled button
       const filledButton = container.find(`[zid-visible-wishlist="${productId}"]`)[0];
       const emptyButton = container.find(`[zid-hidden-wishlist="${productId}"]`)[0] ||
-                          container.find('.icon-heart-mask:not([zid-visible-wishlist])')[0];
+        container.find('.icon-heart-mask:not([zid-visible-wishlist])')[0];
 
       if (filledButton) {
         filledButton.style.setProperty('display', 'inline-block', 'important');
@@ -291,7 +295,7 @@ function removeFromWishlist(elm, productId) {
   const container = $(elm).closest('.add-to-wishlist');
 
   // Hide ALL heart buttons and show loader
-  container.find('.icon-heart-mask').each(function() {
+  container.find('.icon-heart-mask').each(function () {
     this.style.setProperty('display', 'none', 'important');
   });
   container.find('.loader').removeClass('d-none');
@@ -307,7 +311,7 @@ function removeFromWishlist(elm, productId) {
     // Hide the filled button, show the empty button
     const filledButton = container.find(`[zid-visible-wishlist="${productId}"]`)[0];
     const emptyButton = container.find(`[zid-hidden-wishlist="${productId}"]`)[0] ||
-                        container.find('.icon-heart-mask:not([zid-visible-wishlist])')[0];
+      container.find('.icon-heart-mask:not([zid-visible-wishlist])')[0];
 
     if (emptyButton) {
       emptyButton.style.setProperty('display', 'inline-block', 'important');
@@ -396,13 +400,13 @@ $('#show-less').click(function () {
   $(this).hide();
 });
 
-function displayActivePaymentSessionBar(cart) {
+function deprecatedDisplayActivePaymentSessionBar(cart) {
   if (cart.is_reserved) {
     $('.payment-session-bar').removeClass('d-none');
   }
 }
 
-function fetchCart() {
+function deprecatedFetchCart() {
 
   zid.cart.get({ showErrorNotification: true }).then(function (response) {
     if (response && response.id) {
@@ -412,7 +416,7 @@ function fetchCart() {
   });
 }
 
-function getCartTotal(cart) {
+function deprecatedGetCartTotal(cart) {
   if (cart && cart.totals && cart.totals.length > 0) {
     var cartTotalItem = cart.totals.filter(function (total) {
       return total.code === 'total';
@@ -426,20 +430,20 @@ function getCartTotal(cart) {
   return null;
 }
 
-function setCartTotalAndBadge(cart) {
-  setCartBadge(cart.cart_items_quantity ?? cart.products_count);
-  var cartTotal = getCartTotal(cart);
+function deprecatedSetCartTotalAndBadge(cart) {
+  deprecatedSetCartBadge(cart.cart_items_quantity ?? cart.products_count);
+  var cartTotal = deprecatedGetCartTotal(cart);
 
   if (cartTotal) {
-    setCartIconTotal(cartTotal);
+    deprecatedSetCartIconTotal(cartTotal);
   }
 }
 
-function setCartIconTotal(total) {
+function deprecatedSetCartIconTotal(total) {
   $('.cart-header-total').html(total);
 }
 
-function setCartBadge(badge) {
+function deprecatedSetCartBadge(badge) {
   if (badge > 0) {
     $('.cart-badge').removeClass('d-none');
     $('.cart-badge').html(badge);
@@ -605,15 +609,16 @@ function fetchProductsSearch(catId, query) {
       page_size: 5,
       q: query,
       categories: catId,
-    }, {showErrorNotification: true})
+    }, { showErrorNotification: true })
     .then(function (response) {
       if (response && response.results) {
-        $('.autocomplete-items').html('');
+        const resultsContainer = $(target).closest('.search-content, .sm-search-div, .autocomplete').find('.autocomplete-items');
+        resultsContainer.html('');
 
         for (var i = 0; i < response.results.length; i++) {
           var product = response.results[i];
 
-          $('.autocomplete-items').append(
+          resultsContainer.append(
             '<div><a href="' + product.html_url + '">' + product.name + '</a></div>'
           );
         }
@@ -937,7 +942,7 @@ function updateUIAfterLogin(customer) {
         const isInWishlist = wishlistProductIds.includes(productId);
         const filledButton = container.querySelector(`[zid-visible-wishlist="${productId}"]`);
         const emptyButton = container.querySelector(`[zid-hidden-wishlist="${productId}"]`) ||
-                            container.querySelector('.icon-heart-mask:not([zid-visible-wishlist])');
+          container.querySelector('.icon-heart-mask:not([zid-visible-wishlist])');
 
         if (isInWishlist) {
           if (filledButton) {
@@ -1030,19 +1035,95 @@ function updateUIAfterLogin(customer) {
 
 window.addEventListener('vitrin:auth:success', async event => {
 
-    if (window.zid?.account?.get) {
-      try {
-        const customerData = await window.zid.account.get();
-        if (customerData) {
-          // Update UI without reload
-          updateUIAfterLogin(customerData);
-          return;
-        }
-      } catch (error) {
-        console.error('Failed to fetch customer data:', error);
+  if (window.zid?.account?.get) {
+    try {
+      const customerData = await window.zid.account.get();
+      if (customerData) {
+        // Update UI without reload
+        updateUIAfterLogin(customerData);
+        return;
       }
+    } catch (error) {
+      console.error('Failed to fetch customer data:', error);
+    }
   }
 
   // Fallback to page reload if zid account get fails
   window.location.reload();
 });
+
+
+$(document).ready(function () {
+  $('.search-box').on('click', function () {
+    $('body').addClass('open-search-modal');
+  });
+
+  $('.search-modal .close-btn').on('click', function () {
+    $('body').removeClass('open-search-modal');
+  });
+});
+
+function toggleProductAttributeMobile() {
+  const filterButton = document.querySelector('.products-list-filter-sm');
+  if (filterButton) {
+    filterButton.classList.toggle('active');
+  }
+}
+
+var fixed_header;
+var sticky;
+
+window.onscroll = () => fixed_header_to_top(); 
+
+function fixed_header_to_top() {
+    const scrollLimit = window.innerWidth < 576 ? 150 : 300;
+
+    if (window.scrollY > scrollLimit) {
+        if (fixed_header) {
+            fixed_header.classList.add("sticky");
+        }
+    } else {
+        if (fixed_header) {
+            fixed_header.classList.remove("sticky");
+        }
+    }
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+    const logoHTML = document.getElementById("menu-logo").innerHTML;
+    const menuSecondary = document.getElementById("menu-secondary").innerHTML;
+    const htmlLang = document.documentElement.getAttribute("lang");
+    const menuPosition = htmlLang === "ar" ? "right-front" : "left-front";
+
+    const menu = new Mmenu("#sliding-menu", {
+      slidingSubmenus: true,
+        navbar: {
+            title: "القائمة الرئيسية",
+            titleLink: "parent"
+        },
+        navbars: [
+            {
+                position: "top",
+                content: [
+                    logoHTML,
+                    "close"
+                ]
+            },
+             {
+                position: "bottom",
+                content: [
+                    menuSecondary
+                ]
+            }
+        ],
+        offCanvas: { position: menuPosition },
+        theme: "white"
+    });
+
+    const api = menu.API;
+    document.querySelector(".menu-btn")?.addEventListener("click", (e) => {
+        e.preventDefault();
+        api.open();
+    });
+});
+

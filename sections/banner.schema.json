@@ -1,0 +1,51 @@
+{
+  "section_id": "uuid",
+  "template": "sections/banner.jinja",
+  "icon": "fal fa-sparkles",
+  "name": {
+    "ar": "بانر",
+    "en": "Banner"
+  },
+  "settings": [
+    {
+      "id": "hide_element",
+      "type": "checkbox",
+      "label": {
+        "ar": "إخفاء العنصر من الصفحة",
+        "en": "Hide element from page"
+      }
+    },
+    {
+      "id": "image",
+      "type": "image",
+      "label": {
+        "ar": "الصورة",
+        "en": "Image"
+      },
+      "info": {
+        "ar": "مقاس الصورة 2881 عرض * 961 طول",
+        "en": "Image size: 2881 width * 961 height"
+      }
+    },
+    {
+      "id": "image_mobile",
+      "type": "image",
+      "label": {
+        "ar": "صورة الجوال",
+        "en": "Mobile Image"
+      },
+      "info": {
+        "ar": "مقاس الصورة 768 عرض * 983 طول",
+        "en": "Image size: 768 width * 983 height"
+      }
+    },
+    {
+      "id": "url",
+      "type": "url",
+      "label": {
+        "ar": "الرابط",
+        "en": "Link"
+      }
+    }
+  ]
+}

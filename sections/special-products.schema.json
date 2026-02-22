@@ -1,0 +1,35 @@
+{
+  "section_id": "uuid",
+  "template": "sections/special-products.jinja",
+  "icon": "fal fa-box",
+  "name": {
+    "ar": "منتجات مميزة",
+    "en": "Special Products"
+  },
+  "settings": [
+    {
+      "id": "hide_element",
+      "type": "checkbox",
+      "label": {
+        "ar": "إخفاء العنصر من الصفحة",
+        "en": "Hide element from page"
+      }
+    },
+    {
+      "id": "title",
+      "type": "text",
+      "label": {
+        "ar": "العنوان الرئيسي",
+        "en": "Title"
+      }
+    },
+    {
+      "id": "products",
+      "type": "products",
+      "label": {
+        "ar": "اختر قائمة المنتجات",
+        "en": "Select category products"
+      }
+    }
+  ]
+}

@@ -1,0 +1,53 @@
+{
+  "section_id": "uuid",
+  "template": "sections/categories-banners.jinja",
+  "icon": "fal fa-sparkles",
+  "name": {
+    "ar": "مجموعة عناصر",
+    "en": "Group of Elements"
+  },
+  "settings": [
+    {
+      "id": "hide_element",
+      "type": "checkbox",
+      "label": {
+        "ar": "إخفاء العنصر من الصفحة",
+        "en": "Hide element from page"
+      }
+    },
+    {
+      "id": "title",
+      "type": "text",
+      "label": {
+        "ar": "العنوان الرئيسي",
+        "en": "title"
+      }
+    },
+    {
+      "id": "categories_banners",
+      "type": "list",
+      "label": {
+        "ar": "الصور",
+        "en": "Pictures"
+      },
+      "settings": [
+        {
+          "id": "image",
+          "type": "image",
+          "label": {
+            "ar": "الصورة",
+            "en": "Image"
+          }
+        },
+        {
+          "id": "url",
+          "type": "url",
+          "label": {
+            "ar": "الرابط",
+            "en": "Link"
+          }
+        }
+      ]
+    }
+  ]
+}

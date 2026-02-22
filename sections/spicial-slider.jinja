@@ -1,9 +1,8 @@
-<section class="tp-slider-spicial-section tp-slider-img-auto" section-id="{{ sectionId }}"
-    style="{% if settings.hide_element %}display: none;{% endif %}">
+{% if not settings.hide_element %}
+<section class="tp-slider-spicial-section tp-slider-img-auto" section-id="{{ sectionId }}">
     <div class="container">
         <div class="gradient-border">
-            <div class="tp-slider-spicial"
-                data-autoplay="{% if not settings.stop_autoplay %}true{% else %}false{% endif %}">
+            <div class="tp-slider-spicial" data-autoplay="{{ 'true' if not settings.stop_autoplay else 'false' }}">
                 {% for slide in settings.spicial_slider %}
                 <div class="swiper-slide">
                     <a href="{{ slide.url if slide.url else 'javascript:;' }}">
@@ -35,7 +34,7 @@
                         {% if slide.title or slide.sub_title or slide.btn_text %}
                         <div class="box-text-info">
                             {% if slide.title %}
-                            <h3 data-swiper-parallax="-500">{{ slide.title }}</h3>
+                            <h3 data-swiper-parallax="-500" style="color:{{ slide.color }}">{{ slide.title }}</h3>
                             {% endif %}
                             {% if slide.sub_title %}
                             <p data-swiper-parallax="-300">{{ slide.sub_title }}</p>
@@ -92,3 +91,4 @@
         });
     </script>
 </section>
+{% endif %}

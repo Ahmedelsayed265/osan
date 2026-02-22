@@ -631,3 +631,9 @@ msgstr "التوصيل إلى:"
 
 msgid "Pickup from:"
 msgstr "الاستلام من:"
+
+msgid "cart content"
+msgstr "محتويات السلة"
+
+msgid "Empty cart"
+msgstr "السلة فارغة"

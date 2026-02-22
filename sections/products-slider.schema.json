@@ -1,0 +1,51 @@
+{
+  "section_id": "uuid",
+  "template": "sections/products-slider.jinja",
+  "icon": "fal fa-box",
+  "name": {
+    "ar": "منتجات متحركة",
+    "en": "Products Slider"
+  },
+  "settings": [
+    {
+      "id": "hide_element",
+      "type": "checkbox",
+      "label": {
+        "ar": "إخفاء العنصر من الصفحة",
+        "en": "Hide element from page"
+      }
+    },
+    {
+      "id": "title",
+      "type": "text",
+      "label": {
+        "ar": "العنوان الرئيسي",
+        "en": "Title"
+      }
+    },
+    {
+      "id": "products",
+      "type": "products",
+      "label": {
+        "ar": "اختر قائمة المنتجات",
+        "en": "Select category products"
+      }
+    },
+    {
+      "id": "display_more",
+      "type": "checkbox",
+      "label": {
+        "ar": "عرض زر جميع منتجات التصنيف",
+        "en": "Display button more products"
+      }
+    },
+    {
+      "id": "more_text",
+      "type": "text",
+      "label": {
+        "ar": "نص زر المزيد",
+        "en": "More text"
+      }
+    }
+  ]
+}

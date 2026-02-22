@@ -1,0 +1,23 @@
+{% if not settings.hide_element %}
+<section class="tp-categories-banners s-block" section-id="{{ sectionId }}">
+    <div class="container">
+        {% if settings.title %}
+        <div class="tp-title-section">
+            <h3>{{ settings.title }}</h3>
+        </div>
+        {% endif %}
+
+        <div class="tp-items-banner">
+            {% for item in safeget(settings, 'categories_banners', []) %}
+            <a href="{{ item.url if item.url else 'javascript:;' }}" class="tp-banner-item" {% if item.image %}
+                style="background-image:url('{{ image_url(item.image, w=500) }}')" {% endif %}>
+                {% if item.image %}
+                <img loading="lazy" width="500" height="250" class="lazy-img" src="{{ image_url(item.image, w=500) }}"
+                    alt="{{ settings.title if settings.title else 'banner' }}">
+                {% endif %}
+            </a>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endif %}

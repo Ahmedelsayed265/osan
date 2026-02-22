@@ -4,20 +4,10 @@
 {% block header %} {% include 'header.jinja' %} {% endblock %}
 
 {% block main_content %}
-
-    <div class="home">
+    <div class="tp-home">
         {% template_components %}
     </div>
-
 {% endblock %}
 
 {% block footer %} {% include 'footer.jinja' %} {% endblock %}
-
-{% block footer_scripts %}
-    <script>
-        $( window ).resize(function() {
-            $('.s-slider').slick('resize');
-        });
-    </script>
-{% endblock %}
 

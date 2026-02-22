@@ -1,0 +1,83 @@
+{% if not settings.hide_element %}
+<section class="tp-brands s-block" section-id="{{ sectionId }}">
+    <div class="container">
+        {% if settings.title %}
+        <div class="tp-title-section">
+            <h3>{{ settings.title }}</h3>
+        </div>
+        {% endif %}
+
+        <div class="swiper tp-brands-swiper" id="swiper-{{ sectionId }}">
+            <div class="swiper-wrapper">
+                {% for store_partner in safeget(settings, 'store_partners', []) %}
+                <div class="swiper-slide">
+                    <div class="tp-brand-item">
+                        <div class="tp-brand-thumb">
+                            {% if store_partner.image %}
+                            <a href="{{ store_partner.url if store_partner.url else 'javascript:;' }}"
+                                aria-label="brand">
+                                <img loading="lazy" width="125" height="125" class="lazy-img"
+                                    src="{{ image_url(store_partner.image, w=200) }}" alt="brand">
+                            </a>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const sectionId = "{{ sectionId }}";
+            const swiperSelector = '#swiper-' + sectionId;
+
+            if (document.querySelector(swiperSelector)) {
+                new Swiper(swiperSelector, {
+                    slidesPerView: 9,
+                    spaceBetween: 20,
+                    loop: true,
+                    autoplay: {
+                        delay: 2000,
+                        disableOnInteraction: false,
+                    },
+                    breakpoints: {
+                        320: {
+                            slidesPerView: 3,
+                            spaceBetween: 10
+                        },
+                        450: {
+                            slidesPerView: 3,
+                            spaceBetween: 15
+                        },
+                        768: {
+                            slidesPerView: 5,
+                            spaceBetween: 20
+                        },
+                        992: {
+                            slidesPerView: 6,
+                            spaceBetween: 20
+                        },
+                        1024: {
+                            slidesPerView: 7,
+                            spaceBetween: 20
+                        },
+                        1200: {
+                            slidesPerView: 8,
+                            spaceBetween: 20
+                        }
+                    },
+                    on: {
+                        init: function () {
+                            if (window.appDirection !== 'ltr') {
+                                this.changeLanguageDirection('rtl');
+                            }
+                        }
+                    }
+                });
+            }
+        });
+    </script>
+</section>
+{% endif %}

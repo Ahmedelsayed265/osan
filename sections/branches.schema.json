@@ -1,0 +1,101 @@
+{
+  "section_id": "uuid",
+  "template": "sections/branches.jinja",
+  "icon": "fal fa-cabinet-filing",
+  "name": {
+    "ar": "الفروع",
+    "en": "Branches"
+  },
+  "settings": [
+    {
+      "id": "hide_element",
+      "type": "checkbox",
+      "label": {
+        "ar": "إخفاء العنصر من الصفحة",
+        "en": "Hide element from page"
+      }
+    },
+    {
+      "id": "title",
+      "type": "text",
+      "label": {
+        "ar": "العنوان الرئيسي",
+        "en": "Title"
+      }
+    },
+    {
+      "id": "phone",
+      "type": "text",
+      "label": {
+        "ar": "رقم الجوال",
+        "en": "phone"
+      }
+    },
+    {
+      "id": "email",
+      "type": "text",
+      "label": {
+        "ar": "البريد الإلكتروني",
+        "en": "email"
+      }
+    },
+    {
+      "id": "address",
+      "type": "text",
+      "label": {
+        "ar": "العنوان",
+        "en": "address"
+      }
+    },
+    {
+      "id": "branches",
+      "type": "list",
+      "label": {
+        "ar": "الفروع",
+        "en": "branches"
+      },
+      "settings": [
+        {
+          "id": "title",
+          "type": "text",
+          "label": {
+            "ar": "العنوان",
+            "en": "title"
+          }
+        },
+        {
+          "id": "image_branch",
+          "type": "image",
+          "label": {
+            "ar": "صورة الفرع",
+            "en": "Branch image"
+          }
+        },
+        {
+          "id": "map",
+          "type": "textarea",
+          "label": {
+            "ar": "المكان علي الخريطة",
+            "en": "location on map"
+          }
+        },
+        {
+          "id": "google_maps_url",
+          "type": "text",
+          "label": {
+            "ar": "رابط خرائط Google",
+            "en": "Google Maps URL"
+          }
+        },
+        {
+          "id": "button_text",
+          "type": "text",
+          "label": {
+            "ar": "نص الزر",
+            "en": "Button text"
+          }
+        }
+      ]
+    }
+  ]
+}

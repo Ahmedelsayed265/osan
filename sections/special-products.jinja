@@ -1,0 +1,19 @@
+{% if not settings.hide_element %}
+<section class="tp-product-card s-block" section-id="{{ sectionId }}">
+    <div class="container">
+        {% if settings.title %}
+        <div class="tp-title-section">
+            <h3>{{ settings.title }}</h3>
+        </div>
+        {% endif %}
+
+        <div class="products-grid-custom">
+            {% set products_data = safeget(settings, "products.results", []) %}
+
+            {% for product in products_data[:5] %}
+            {% set index=loop.index0 %}{% include 'components/product-card.jinja' %}
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endif %}

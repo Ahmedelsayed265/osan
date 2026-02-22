@@ -1,0 +1,23 @@
+{% if not settings.hide_element %}
+<section class="tp-banners s-block" section-id="{{ sectionId }}">
+    <div class="container">
+        <div class="tp-items">
+            <a href="{{ settings.url if settings.url else 'javascript:;' }}">
+                {% if settings.image or settings.image_mobile %}
+                <picture>
+                    {% if settings.image_mobile %}
+                    <source media="(max-width: 767px)" srcset="{{ image_url(settings.image_mobile, w=800) }}">
+                    {% endif %}
+                    {% if settings.image %}
+                    <source media="(min-width: 768px)" srcset="{{ image_url(settings.image, w=1800) }}">
+                    {% endif %}
+                    <img loading="lazy" width="1800" height="450" class="lazy-img"
+                        src="{{ image_url(settings.image, w=1800) if settings.image else image_url(settings.image_mobile, w=800) }}"
+                        alt="banner">
+                </picture>
+                {% endif %}
+            </a>
+        </div>
+    </div>
+</section>
+{% endif %}

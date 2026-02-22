@@ -1,0 +1,92 @@
+{% if not settings.hide_element %}
+<section class="tp-product-card s-block" section-id="{{ sectionId }}">
+    <div class="container">
+        <div class="tp-title-section">
+            {% if settings.title %}
+            <h3>{{ settings.title }}</h3>
+            {% endif %}
+
+            {% if settings.display_more and settings.products.url %}
+            <a class="href" href="{{ settings.products.url }}">{{ settings.more_text }}</a>
+            {% endif %}
+        </div>
+
+        <div class="products-slider-wrapper" style="position: relative">
+            <div class="swiper products-slider" id="swiper-{{ sectionId }}">
+                <div class="swiper-wrapper">
+                    {% set products_data = safeget(settings, "products.results", []) %}
+
+                    {% for product in products_data[:12] %}
+                    <div class="swiper-slide prod-col">
+                        {% set index=loop.index0 %}{% include 'components/product-card.jinja' %}
+                    </div>
+                    {% endfor %}
+                </div>
+
+                <div class="swiper-pagination"></div>
+
+                <div class="tp-slider-arrows">
+                    <div class="swiper-button-next"></div>
+                    <div class="swiper-button-prev"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const sectionId = "{{ sectionId }}";
+            const swiperSelector = '#swiper-' + sectionId;
+
+            if (document.querySelector(swiperSelector)) {
+                new Swiper(swiperSelector, {
+                    slidesPerView: 5,
+                    spaceBetween: 20,
+                    loop: false,
+                    autoplay: {
+                        delay: 3000,
+                        disableOnInteraction: false,
+                    },
+                    pagination: {
+                        el: swiperSelector + ' .swiper-pagination',
+                        clickable: true,
+                    },
+                    navigation: {
+                        nextEl: swiperSelector + ' .swiper-button-next',
+                        prevEl: swiperSelector + ' .swiper-button-prev',
+                    },
+                    breakpoints: {
+                        320: {
+                            slidesPerView: 1.5,
+                            spaceBetween: 10
+                        },
+                        576: {
+                            slidesPerView: 2,
+                            spaceBetween: 15
+                        },
+                        768: {
+                            slidesPerView: 3,
+                            spaceBetween: 20
+                        },
+                        1024: {
+                            slidesPerView: 4,
+                            spaceBetween: 20
+                        },
+                        1200: {
+                            slidesPerView: 5,
+                            spaceBetween: 20
+                        }
+                    },
+                    on: {
+                        init: function () {
+                            if (window.appDirection !== 'ltr') {
+                                this.changeLanguageDirection('rtl');
+                            }
+                        }
+                    }
+                });
+            }
+        });
+    </script>
+</section>
+{% endif %}

@@ -1,0 +1,53 @@
+{
+  "section_id": "uuid",
+  "template": "sections/faqs.jinja",
+  "icon": "fal fa-question-square",
+  "name": {
+    "ar": "الاسئلة الشائعة",
+    "en": "FAQs"
+  },
+  "settings": [
+    {
+      "id": "hide_element",
+      "type": "checkbox",
+      "label": {
+        "ar": "إخفاء العنصر من الصفحة",
+        "en": "Hide element from page"
+      }
+    },
+    {
+      "id": "title",
+      "type": "text",
+      "label": {
+        "ar": "العنوان الرئيسي",
+        "en": "Title"
+      }
+    },
+    {
+      "id": "faqs",
+      "type": "list",
+      "label": {
+        "ar": "الاسئلة الشائعة",
+        "en": "FAQs"
+      },
+      "settings": [
+        {
+          "id": "question",
+          "type": "text",
+          "label": {
+            "ar": "السؤال",
+            "en": "Question"
+          }
+        },
+        {
+          "id": "answer",
+          "type": "textarea",
+          "label": {
+            "ar": "الجواب",
+            "en": "Answer"
+          }
+        }
+      ]
+    }
+  ]
+}

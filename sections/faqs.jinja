@@ -1,0 +1,31 @@
+{% if not settings.hide_element %}
+<section class="tp-faqs s-block" section-id="{{ sectionId }}">
+    <div class="container">
+        {% if settings.title %}
+        <div class="tp-title-section">
+            <h3>{{ settings.title }}</h3>
+        </div>
+        {% endif %}
+
+        <div class="faqs-box" id="faqs-box-{{ sectionId }}">
+            {% for faq in safeget(settings, 'faqs', []) %}
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapse-{{ sectionId }}-{{ loop.index }}" aria-expanded="false">
+                        <span>{% if loop.index < 10 %}0{% endif %}{{ loop.index }}</span>
+                                {{ faq.question }}
+                    </button>
+                </h2>
+                <div id="collapse-{{ sectionId }}-{{ loop.index }}" class="accordion-collapse collapse"
+                    data-bs-parent="#faqs-box-{{ sectionId }}">
+                    <div class="accordion-body">
+                        {{ faq.answer | safe }}
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endif %}

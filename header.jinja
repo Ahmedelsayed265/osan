@@ -1,105 +1,56 @@
-<header section-id="{{ sectionId }}" class='header-nav {% if transparent_header %}bg-header-transparent{% endif %}'
-  id="fixed-header">
+<header id="{{ sectionId }}" section-id="{{ sectionId }}" class='header-nav {% if transparent_header %}bg-header-transparent{% endif %}' id="fixed-header">
+
   {% include 'vitrin:shared/store_messages.jinja' %}
-  {% include 'components/header-announcement-bar.jinja' with { 'ab_settings' : settings } %}
+  {% set ab_settings=settings %}{% include 'components/header-announcement-bar.jinja' %}
+  {% set multiple_countries = store.countries | length > 1 %}
+  {% set multiple_languages = store.languages | length > 1 %}
+
   <div class="bg-header">
     <div class="container">
-      {% include 'components/header-search-header.jinja' with { 'header_settings' : settings } %}
+      {% set header_settings=settings %}{% include 'components/header-search-header.jinja' %}
     </div>
   </div>
-</header>
 
-{% include 'components/header-sliding-menu.jinja' with { 'menu_settings' : settings } %}
+  {% set menu_settings=settings %}{% include 'components/header-sliding-menu.jinja' %}
 
-{% if not ('hide_country' in settings.header_options) or not ('hide_language' in settings.header_options)%}
-<div class="modal" id="langCurrecyModal" tabindex="-1" role="dialog">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-body">
-        {% include 'vitrin:shared/shipping_destination_currency_lang.jinja' with { 'hideDestination' : ('hide_country'
-        in settings.header_options), 'hideLanguage' : ('hide_language' in settings.header_options) , 'hideCurrency' :
-        ('hide_country' in settings.header_options) } %}
+  <aside data-empty="{{ _('Empty cart') }}" class="offcanvas offcanvas-end block-side-cart" tabindex="-1" id="side-cart" aria-labelledby="offcanvasLabel">
+    <div class="offcanvas-header">
+      <h5 class="offcanvas-title" id="offcanvasLabel">{{ _("cart content") }}</h5>
+
+      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" color="#000000" fill="none"
+          stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M18 6L6.00081 17.9992M17.9992 18L6 6.00085" />
+        </svg>
+      </button>
+    </div>
+
+    <div class="offcanvas-body">
+      <div class="cart-list">
+        <div class="empty-cart-box" id="additional-cart"></div>
+        <ul class="item-inside-cart show side-cart-items d-none"></ul>
       </div>
-    </div>
-  </div>
-</div>
-{% endif %}
 
-{% if not ('hide_search_bar' in settings.header_options) %}
-<div class="search-modal">
-  <div class="search-content">
-    <h3>{{ locals.what_are_you_looking_for }}</h3>
-    <div class="search-input">
-      <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" width="24" height="24" color="#000000" fill="none">
-        <path d="M17.5 17.5L22 22" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
-          stroke-linejoin="round" />
-        <path
-          d="M20 11C20 6.02944 15.9706 2 11 2C6.02944 2 2 6.02944 2 11C2 15.9706 6.02944 20 11 20C15.9706 20 20 15.9706 20 11Z"
-          stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" />
-      </svg>
-      <input type="text" aria-label="Search" data-cat-id="{{ category.id }}" class="search-input-input"
-        placeholder="{% if settings.header_search_placeholder %}{{ settings.header_search_placeholder }}{% else %}{{ locals.search_placeholder }}{% endif %}">
-    </div>
-    <ul class="autocomplete-items"></ul>
-  </div>
-  <button class="close-btn"></button>
-  <span class="overlay-search"></span>
-</div>
-{% endif %}
+      <div class="loading-cart">
+        <span class="loader-cart"></span>
+      </div>
 
-<aside data-empty="{{ locals.empty_cart }}" class="offcanvas offcanvas-end block-side-cart" tabindex="-1" id="side-cart"
-  aria-labelledby="offcanvasLabel">
-  <div class="offcanvas-header">
-    <h5 class="offcanvas-title" id="offcanvasLabel">{{ locals.cart_sidebar_title }}</h5>
-    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-  </div>
-  <div class="offcanvas-body">
-    <div class="cart-list">
-      <div class="empty-cart-box" id="additional-cart"></div>
-      <div class="min-cart-progress cart-rules"></div>
-      <ul class="item-inside-cart show side-cart-items d-none"></ul>
-    </div>
-    <div class="loading-cart">
-      <span class="loader-cart"></span>
-    </div>
+      <div class="mt-auto footer-side-cart d-none w-100">
+        <ul class="cart-side-totals" id="cart-side-totals"></ul>
 
-    <div class="footer-side-cart d-none w-100">
-      <div class="coupon-form">
-        <form>
-          <div class="form-group">
-            <h4>{{ locals.coupon_discount }}</h4>
-            <div class="d-flex">
-              <input class="form-control send-coupon" type="text" placeholder="{{ locals.coupon_discount_enter }}" />
-              <button type="button" class="tp-btn tp-btn-primary-outline" onclick="sendCoupon(this)">
-                <img loading="lazy" class="send-coupon-progress d-none" src="{{ asset_url }}spinner.gif" width="15"
-                  height="15" />
-                {{ locals.coupon_discount_submit }}
-              </button>
-            </div>
-          </div>
-        </form>
-        {% if cart.coupon.message %}
-        <div class="message-coupon" role="alert">
-          <span>{{ cart.coupon.message }}</span>&nbsp;
-          <a onclick="deleteCoupon(this)">
-            <span class="icon-trash-alt"></span>
-            <img loading="lazy" class="delete-coupon-progress d-none" src="{{ asset_url }}spinner.gif" width="15"
-              height="15" />
+        <div class="btn-side-cart">
+          <a class="tp-btn tp-btn-primary-outline" href="/cart/view">{{ _("Cart") }}</a>
+
+          <a zid-visible-customer="true" href="/checkout/choose-address-and-shipping" class="tp-btn tp-btn-primary">
+            {{ _("Complete Order") }}
+          </a>
+
+          <a zid-visible-guest="true" href="/auth/login?redirect_to=/checkout/choose-address-and-shipping"
+            class="tp-btn tp-btn-primary">
+            {{ _("Complete Order") }}
           </a>
         </div>
-        {% endif %}
-      </div>
-      <ul class="cart-side-totals" id="cart-side-totals"></ul>
-      <div class="btn-side-cart">
-        <a class="tp-btn tp-btn-primary-outline" href="/cart/view">{{locals.cart_view_title}}</a>
-        <a zid-visible-customer="true" href="/checkout/choose-address-and-shipping" class="tp-btn tp-btn-primary">
-          {{ locals.cart_continue_to_purchase }}
-        </a>
-        <a zid-visible-guest="true" href="/auth/login?redirect_to=/checkout/choose-address-and-shipping"
-          class="tp-btn tp-btn-primary">
-          {{ locals.cart_continue_to_purchase }}
-        </a>
       </div>
     </div>
-  </div>
-</aside>
+  </aside>
+</header>

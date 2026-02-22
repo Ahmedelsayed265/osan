@@ -1,0 +1,53 @@
+{
+  "section_id": "uuid",
+  "template": "sections/collections.jinja",
+  "icon": "fal fa-sparkles",
+  "name": {
+    "ar": "المجموعات",
+    "en": "Collections"
+  },
+  "settings": [
+    {
+      "id": "hide_element",
+      "type": "checkbox",
+      "label": {
+        "ar": "إخفاء العنصر من الصفحة",
+        "en": "Hide element from page"
+      }
+    },
+    {
+      "id": "title",
+      "type": "text",
+      "label": {
+        "ar": "العنوان الرئيسي",
+        "en": "title"
+      }
+    },
+    {
+      "id": "store_partners",
+      "type": "list",
+      "label": {
+        "ar": "المجموعات",
+        "en": "Collections"
+      },
+      "settings": [
+        {
+          "id": "image",
+          "type": "image",
+          "label": {
+            "ar": "الصورة",
+            "en": "Image"
+          }
+        },
+        {
+          "id": "url",
+          "type": "url",
+          "label": {
+            "ar": "الرابط",
+            "en": "Link"
+          }
+        }
+      ]
+    }
+  ]
+}
