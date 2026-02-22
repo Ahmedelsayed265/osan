@@ -84,12 +84,12 @@ body:not([data-template="home"]) .outer-left {
     radial-gradient(
       circle at var(--cnr),
       transparent var(--r),
-      #ffffff var(--r)
+      #000000 var(--r)
     ),
     radial-gradient(
       circle at var(--cnr),
       transparent var(--r),
-      #ffffff var(--r)
+      #000000 var(--r)
     ),
     linear-gradient(45deg, rgb(210 223 246 / 0%), rgb(76 111 157 / 0%));
   left: 0;
@@ -102,12 +102,12 @@ body:not([data-template="home"]) .outer-right {
     radial-gradient(
       circle at var(--cnr),
       transparent var(--r),
-      #ffffff var(--r)
+      #000000 var(--r)
     ),
     radial-gradient(
       circle at var(--cnr),
       transparent var(--r),
-      #ffffff var(--r)
+      #000000 var(--r)
     ),
     linear-gradient(45deg, rgb(210 223 246 / 0%), rgb(76 111 157 / 0%));
   right: 0;
@@ -115,8 +115,8 @@ body:not([data-template="home"]) .outer-right {
 }
 
 body:not([data-template="home"]) .inner {
-  outline: var(--o) solid #ffffff;
-  background: #ffffff;
+  outline: var(--o) solid #000000;
+  background: #000000;
 }
 
 body:not([data-template="home"]) .outer-left span,
@@ -124,7 +124,7 @@ body:not([data-template="home"]) .outer-right span {
   width: 280px;
   top: 0;
   left: 0;
-  background: #ffffff;
+  background: #000000;
 }
 
 body:not([data-template="home"]) .outer-right span {

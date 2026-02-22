@@ -40,7 +40,10 @@ msgid "Commercial registeration number:"
 msgstr "الرقم التجارى:"
 
 msgid "Hello"
-msgstr "أهلا"
+msgstr "هلا فيك"
+
+msgid "Welcome back"
+msgstr "مرحبا بك في متجر اوسان"
 
 msgid "Login"
 msgstr "تسجيل الدخول"
@@ -289,7 +292,7 @@ msgid "Logout"
 msgstr "تسجيل الخروج"
 
 msgid "Cart"
-msgstr "السلة"
+msgstr "سلة المشتريات"
 
 msgid "Enjoy free shipping for the cities"
 msgstr "استمتع بالشحن المجاني للمدن"
@@ -637,3 +640,9 @@ msgstr "محتويات السلة"
 
 msgid "Empty cart"
 msgstr "السلة فارغة"
+
+msgid "Welcome"
+msgstr "مرحبا بك في متجر اوسان"
+
+msgid "Login to your account"
+msgstr "تسجيل الدخول / انشاء حساب"

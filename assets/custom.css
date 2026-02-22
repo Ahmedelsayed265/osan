@@ -5554,6 +5554,11 @@ body:has(.tp-slider-banners + .tp-slider-banners) .tp-slider-banners {
   display: flex;
   margin-right: auto;
   opacity: 0.4;
+  display: none !important;
+}
+
+.slide-menu__backlink[data-action="back"] {
+  display: none !important;
 }
 
 .slide-menu .slide-menu-arrow {
@@ -8664,6 +8669,8 @@ body:has(.popup-sec.active) {
   opacity: 1 !important;
   border-radius: 40px 0 0 40px;
   overflow: hidden;
+  display: flex !important;
+  flex-direction: column;
 }
 
 .mm-listitem:after {
