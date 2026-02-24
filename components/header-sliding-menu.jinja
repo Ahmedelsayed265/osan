@@ -168,8 +168,8 @@
             {% if menu.url %}
                 <li class="slide-menu-ul-li {% if menu.slug == 'all_categories' %} all-categories {% endif %}" onclick="scrollToSubMenu(this)">
                     <a href="{{ menu.url | localized_url if menu.resource_type != 'url' else menu.url }}" title="{{ menu.label }}" class="menu-link" aria-label="{{ menu.label }}">
-                        {% if menu.icon %}
-                        <img loading="lazy" src="{{ menu.icon }}" alt="menu" width="42" height="42" class="menu-image lazy-img" />
+                        {% if menu.image_thumbnail %}
+                        <img loading="lazy" src="{{ menu.image_thumbnail }}" alt="menu" width="42" height="42" class="menu-image lazy-img" />
                         {% endif %}
                         <span class="clickable-span">{{ menu.label }}</span>
                     </a>
@@ -180,8 +180,8 @@
                         <li class="slide-menu-ul-li">
                             <a href="{{ menu_sub.url | localized_url if menu_sub.resource_type != 'url' else menu_sub.url }}"
                                 aria-label="{{ menu_sub.label }}">
-                                {% if menu_sub.icon %}
-                                <img loading="lazy" src="{{ menu_sub.icon }}" alt="menu-sub" width="42" height="42"
+                                {% if menu_sub.image_thumbnail %}
+                                <img loading="lazy" src="{{ menu_sub.image_thumbnail }}" alt="menu-sub" width="42" height="42"
                                     class="menu-image lazy-img" />
                                 {% endif %}
                                 <span class="clickable-span">{{ menu_sub.label }}</span>
@@ -193,8 +193,8 @@
                                 <li class="slide-menu-ul-li">
                                     <a href="{{ menu_sub_sub.url | localized_url if menu_sub_sub.resource_type != 'url' else menu_sub_sub.url }}"
                                         aria-label="{{ menu_sub_sub.label }}">
-                                        {% if menu_sub_sub.icon %}
-                                        <img loading="lazy" src="{{ menu_sub_sub.icon }}" alt="menu-sub-sub" width="42"
+                                        {% if menu_sub_sub.image_thumbnail %}
+                                        <img loading="lazy" src="{{ menu_sub_sub.image_thumbnail }}" alt="menu-sub-sub" width="42"
                                             height="42" class="menu-image lazy-img" />
                                         {% endif %}
                                         {{ menu_sub_sub.label }}

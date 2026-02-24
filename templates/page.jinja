@@ -1,27 +1,56 @@
 {% extends "layout.jinja" %}
 
-
-{% block header %} {% include 'header.jinja' %} {% endblock %}
-
-{% block main_content %}
-    <section class="blog mt-5 mb-5 ">
-        <div class="container">
-
-            <div class="blog-title mt-5 mb-5">
-                <h1>
-                    {{ page.title }}
-                </h1>
-            </div>
-            <div class="blog-text mt-3 mb-5">
-                {{ page.content | safe }}
-            </div>
-
-            {% set entity = page %}
-            {% include 'vitrin:shared/metafields.jinja' %}
-
-        </div>
-    </section>
-
+{% block header %}
+{% include 'header.jinja' %}
 {% endblock %}
 
-{% block footer %} {% include 'footer.jinja' %} {% endblock %}
+{% block main_content %}
+{% if page.slug == 'branches' %}
+<div class="page-custom">
+    <div class="container">
+        <h1>{{ page.title }}</h1>
+        {% if branches_list %}
+        {% for branch in branches_list %}
+        <div class="parts">
+            {% if branch.image %}
+            <img src="{{ image_url(branch.image) }}"
+                alt="{% if branch.button_text %}{{ branch.button_text }}{% else %}Branch{% endif %}" loading="lazy">
+            {% endif %}
+            <div class="content-part">
+                {% if branch.content %}
+                {{ branch.content | safe }}
+                {% endif %}
+                {% if branch.button_text and branch.button_url %}
+                <a href="{{ branch.button_url }}" class="get-directions tp-btn" target="_blank"
+                    rel="noopener noreferrer">
+                    {{ branch.button_text }}
+                </a>
+                {% endif %}
+            </div>
+        </div>
+        {% endfor %}
+        {% endif %}
+    </div>
+</div>
+{% else %}
+<section id="blog-post" class="blog mt-5 mb-5">
+    <div class="container">
+        <div class="blog-title mt-5 mb-5">
+            <h1>
+                {{ page.title }}
+            </h1>
+        </div>
+        <div class="blog-text mt-3 mb-5">
+            {{ page.content | safe }}
+        </div>
+
+        {% set entity = page %}
+        {% include 'vitrin:shared/metafields.jinja' %}
+    </div>
+</section>
+{% endif %}
+{% endblock %}
+
+{% block footer %}
+{% include 'footer.jinja' %}
+{% endblock %}
