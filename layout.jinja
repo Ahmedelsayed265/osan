@@ -145,7 +145,6 @@
     <link rel="stylesheet" href="{{ ('main.css?v=' ~ ver) | asset_url }}" />
 
     <link rel="stylesheet" type="text/css" href="{{ 'custom.css?v=1.148' | asset_url }}" />
-    <link rel="stylesheet" type="text/css" href="{{ 'responsive.css' | asset_url }}" />
 
     {% if session.lang == 'ar' %}
         <link rel="stylesheet" href="{{ 'main.rtl.css?v=1.25' | asset_url }}">
@@ -157,6 +156,7 @@
     <link rel="stylesheet" href="{{ user_custom_css }}">
   {% endif %}
 
+  <link rel="stylesheet" type="text/css" href="{{ 'responsive.css' | asset_url }}" />
 </head>
 
 <body class="{{ session.locale.language.direction }}" data-template="{{ session.template }}"

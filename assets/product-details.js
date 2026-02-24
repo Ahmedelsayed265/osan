@@ -42,3 +42,20 @@ $(".products-details-page #carousel").on("slide.bs.carousel", function (e) {
     $(".products-details-page [id=carousel-selector-" + id + "]").addClass("selected");
     $(".products-details-page #carousel-thumbs").carousel(thumbNum);
 });
+
+document.addEventListener("DOMContentLoaded", function () {
+  const stickyCart = document.querySelector(".sticky-cart");
+
+  function handleStickyCart() {
+    if (!stickyCart) return;
+
+    if (window.innerWidth < 768) {
+      stickyCart.classList.add("active");
+    } else {
+      stickyCart.classList.remove("active");
+    }
+  }
+
+  window.addEventListener("resize", handleStickyCart);
+  handleStickyCart();
+});

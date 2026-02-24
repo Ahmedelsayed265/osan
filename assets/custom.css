@@ -156,9 +156,6 @@
   padding: 0px;
 }
 
-.footer-about-us-links-div {
-}
-
 .footer-about-us-div {
   padding-right: 20%;
 }
@@ -232,53 +229,9 @@
   padding-right: 15px;
 }
 
-.main-slider .slider-item {
-}
-
 .section-title {
   padding-left: 0px;
   padding-right: 0px;
-}
-
-.products-slider .prod-col,
-.categories-slider .cat-col,
-.cards-slider .card-col {
-  padding-left: 15px;
-  padding-right: 15px;
-  display: block;
-  width: auto;
-}
-
-.category-page-slider .categories-slider.s-slider {
-  margin-right: -15px;
-  margin-left: -15px;
-}
-
-.category-page-slider .home-categories-section .section-title {
-  margin-right: -15px;
-  margin-left: -15px;
-}
-
-.category-page-slider .products-slider .prod-col,
-.categories-slider .cat-col,
-.cards-slider .card-col {
-  padding-left: 15px;
-  padding-right: 15px;
-}
-
-.categories-slider-wrapper,
-.products-slider-wrapper,
-.cards-slider-wrapper,
-.testimonials-slider-wrapper,
-.partners-slider-wrapper {
-  margin-right: -15px;
-  margin-left: -15px;
-}
-
-.products-list .prod-col,
-.bundle-offer-products .prod-col {
-  width: 20%;
-  padding: 15px;
 }
 
 .products-list .prod-col-attr {
@@ -297,19 +250,6 @@
 .select-dropdown .dropdown-item {
   padding-bottom: 7.5px;
   padding-top: 7.5px;
-}
-
-#products-list-filter-form-close {
-  width: 44px;
-  height: 44px;
-  position: absolute;
-  right: 0;
-  top: 0;
-}
-
-.rtl #products-list-filter-form-close {
-  right: unset;
-  left: 0;
 }
 
 .products-pagination {
@@ -6983,6 +6923,7 @@ footer {
   margin-top: 4px !important;
   left: 0 !important;
   right: auto !important;
+  min-width: 14rem;
 }
 
 .tp-shop-top-left .tp-shop-top-select .dropdown-menu .dropdown-item {
@@ -8094,10 +8035,6 @@ input[type="number"] {
   border-radius: 100px;
 }
 
-.coupon-form .d-flex {
-  gap: 15px;
-}
-
 #toast-container > div {
   border-radius: 10px !important;
   -webkit-border-radius: 10px !important;
@@ -9053,4 +8990,12 @@ body:not([data-template="home"]) .outer-container {
   background: none;
   border: none;
   outline: none;
+}
+
+body:not([data-template="home"]) .bg-header .container {
+  max-width: unset;
+}
+
+.header-nav.sticky .container {
+  max-width: 1500px !important;
 }

@@ -559,3 +559,42 @@ function updateMiniCartProduct(productId, quantity) {
     }
   });
 }
+
+function showCartPopupAfterAdd() {
+  const popupSec = document.querySelector(".popup-sec.popup-cart");
+  const overlay = document.querySelector(".overlay-cart");
+  const closeBtn = document.querySelector(".popup-sec.popup-cart .close-modal-custom");
+  const popupBox = document.querySelector(".popup-sec.popup-cart .popup-box");
+
+  if (!popupSec || !overlay) return;
+
+  // فتح البوب أب
+  popupSec.classList.add("active");
+  overlay.classList.add("active");
+
+  // إغلاق عند الضغط على الزر (إضافة مرة واحدة فقط)
+  if (closeBtn && !cartPopupCloseHandler) {
+    cartPopupCloseHandler = () => {
+      popupSec.classList.remove("active");
+      overlay.classList.remove("active");
+    };
+    closeBtn.addEventListener("click", cartPopupCloseHandler);
+  }
+
+  // إغلاق عند الضغط بره البوكس (إضافة مرة واحدة فقط)
+  if (!cartPopupClickHandler) {
+    cartPopupClickHandler = function (e) {
+      if (!popupSec.classList.contains("active")) return;
+      
+      // التحقق من وجود العناصر قبل استخدام contains
+      const clickedOutside = popupBox && !popupBox.contains(e.target);
+      const clickedCloseBtn = closeBtn && closeBtn.contains(e.target);
+      
+      if (clickedOutside && !clickedCloseBtn) {
+        popupSec.classList.remove("active");
+        overlay.classList.remove("active");
+      }
+    };
+    document.addEventListener("click", cartPopupClickHandler);
+  }
+}

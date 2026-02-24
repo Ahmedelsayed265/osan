@@ -316,7 +316,7 @@ msgid "Message"
 msgstr "الرسالة"
 
 msgid "Total summary"
-msgstr "ملخص الإجمالي"
+msgstr "ملخص الطلب"
 
 msgid "name"
 msgstr "الاسم"
@@ -328,10 +328,13 @@ msgid "Includes TAX %(percentage)s"
 msgstr "شامل الضريبة %(percentage)s"
 
 msgid "Discount coupon"
-msgstr "قسيمة الخصم"
+msgstr "كوبون الخصم"
 
 msgid "Enter discount coupon"
-msgstr "أدخل قسيمة الخصم"
+msgstr "ادخل كود الخصم"
+
+msgid "Apply"
+msgstr "تطبيق"
 
 msgid "Read More"
 msgstr "اقرأ المزيد"
@@ -602,9 +605,6 @@ msgstr "اكتشف منتجات ومتاجر جديدة، وتابع حالة ط
 msgid "Download now"
 msgstr "حمّل الآن"
 
-msgid "All categories"
-msgstr "جميع التصنيفات"
-
 msgid "Products cart"
 msgstr "سلة المنتجات"
 
@@ -646,3 +646,12 @@ msgstr "مرحبا بك في متجر اوسان"
 
 msgid "Login to your account"
 msgstr "تسجيل الدخول / انشاء حساب"
+
+msgid "all categories"
+msgstr "جميع التصنيفات"
+
+msgid "Found"
+msgstr "تم ايجاد"
+
+msgid "What are you looking for?"
+msgstr "ما الذي تبحث عنه؟"

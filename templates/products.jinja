@@ -3,79 +3,146 @@
 {% block header %} {% include 'header.jinja' %} {% endblock %}
 
 {% block top_links %}
-	<link rel="stylesheet" type="text/css" href="{{ 'toastr.min.css' | asset_url }}"/>
+    <link rel="stylesheet" type="text/css" href="{{ 'toastr.min.css' | asset_url }}" />
 {% endblock %}
 
 
 {% block main_content %}
 
+{% if products_banner is defined and products_banner is not none %}
+    <div class="container">
+        <img loading="lazy" class="category-cover-img" src="{{ image_url(products_banner, w=1920, q=100, f='auto') }}"
+            alt="category_banner">
+    </div>
+{% endif %}
 
+<div class="breadcrumb-subtitle">
     <section class="breadcrumb-section">
         <nav aria-label="breadcrumb">
-
-            <ol class="breadcrumb">
-            <div class="container d-flex flex-wrap">
-                <li class="breadcrumb-item" aria-current="page"><a href="/">{{ _("Home") }} </a></li>
-                <li class="breadcrumb-item active " aria-current="page">{{ _("All products") }} </li>
+            <div class="container">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item" aria-current="page">
+                        <a href="/">{{ _("Home") }}</a>
+                    </li>
+                    <li class="breadcrumb-item active " aria-current="page">{{ _("All products") }}</li>
+                </ol>
             </div>
-
-            </ol>
-
         </nav>
     </section>
+    {% set title=_("All products") %}{% include 'components/breadcrumb-subTitle-detail.jinja' %}
+</div>
 
-
-
-     <div class="container d-flex flex-row">
-        {% if  products.filters|length > 0 %}
-            {% set async=true %} {% include 'vitrin:products/filters.jinja' %}
+<div class="container">
+    <div class="products-filters-box">
+        {% if products.filters|length > 0 %}
+        {% set async=true %} {% include 'vitrin:products/filters.jinja' %}
         {% endif %}
-        <div class="products-container flex-grow-1 pt-4">
+
+        <div class="products-container">
             <div>
-                {% set count=products.count %}{% set has_products_filtration=(products.filters|length > 0) %}{% include 'components/products-filter.jinja' %}
+                {% set count=products.count %}
+                {% set has_products_filtration=(products.filters|length > 0) %}
+                {% include 'components/products-filter.jinja' %}
             </div>
-            <div id="products-list" class="row products-list">
+
+            <div id="products-list" class="products-grid">
                 {% for product in safeget(products, "results", []) %}
-
-                    <div class="prod-col {% if products.filters|length > 0 %}prod-col-attr{% endif %} prod-col-tb">
-                        {% set product=product %}{% set index=key %}{% include 'components/product-card.jinja' %}
-                    </div>
-
+                {% set product=product %}{% set index=loop.index0 %}{% include 'components/product-card.jinja' %}
                 {% endfor %}
             </div>
         </div>
     </div>
+</div>
 
-    {% set totalPages=products.pages_count %}{% set currentPage=products.page %}{% include 'components/pagination.jinja' %}
+<div class="text-center pb-5">
+    <button id="load-more-button" class="load-more-button tp-btn tp-btn-primary"
+        data-pages="{{ products.pages_count }}">
+        <span class="btn-loader d-none">
+            <span class="loader-more"></span>
+        </span>
+        <span class="btn-label">{{ _("Load More") }}</span>
+    </button>
+</div>
 
 {% endblock %}
 
 {% block footer %} {% include 'footer.jinja' %} {% endblock %}
 
 {% block footer_scripts %}
-    <script type="text/javascript" src="{{ 'toastr.min.js' | asset_url }}" defer></script>
-    <script>
-        window.onProductAttributesTriggered = function(){
-            $('#products-list').css('opacity', '0.4');
-            $('#product-pagination').css('opacity', '0');
+<script type="text/javascript" src="{{ 'toastr.min.js' | asset_url }}" defer></script>
+<script>
+    window.onProductAttributesTriggered = function () {
+        $('#products-list').css('opacity', '0.4');
+        $('#load-more-button').css('opacity', '0');
+    }
+
+    window.onProductAttributesChanged = function (htmlStr) {
+        var html = $.parseHTML(htmlStr);
+        $('#products-list').html($('#products-list', html).html());
+        $('#products-list').css('opacity', '1');
+        $('#product-filter-count').html($('#product-filter-count', html).html());
+        $('#product-filter-count').css('opacity', '1');
+
+        if ($('#product-pagination', html).length > 0) {
+            $('#product-pagination').html($('#product-pagination', html).html());
+            $('#product-pagination').css('opacity', '1');
         }
 
-        window.onProductAttributesChanged = function(htmlStr){
-            var html = $.parseHTML( htmlStr );
-            $('#products-list').html($('#products-list', html).html());
-            $('#products-list').css('opacity', '1');
-            $('#product-filter-count').html($('#product-filter-count', html).html());
-            $('#product-filter-count').css('opacity', '1');
-            if($('#product-pagination', html).length>0){
-                $('#product-pagination').html($('#product-pagination', html).html());
-                $('#product-pagination').css('opacity', '1');
-            }
-
-            // Reload bundle offers for newly loaded products
-            if (window.bundleOffersLoader) {
-                window.bundleOffersLoader.reload();
-            }
+        // Reload bundle offers for newly loaded products
+        if (window.bundleOffersLoader) {
+            window.bundleOffersLoader.reload();
         }
+    }
+</script>
 
-    </script>
+<script type="text/javascript" src="{{ 'load-more.js' | asset_url }}" defer></script>
+
+<script>
+    // noUiSlider setup for price filter
+    function loadNoUiSlider(callback) {
+        let link = document.createElement("link");
+        link.rel = "stylesheet";
+        link.href = "https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/15.6.1/nouislider.min.css";
+        document.head.appendChild(link);
+
+        let script = document.createElement("script");
+        script.src = "https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/15.6.1/nouislider.min.js";
+        script.onload = callback;
+        document.body.appendChild(script);
+    }
+
+    loadNoUiSlider(() => {
+        const priceSection = document.querySelector(".form-products-filter .flex-div");
+        if (!priceSection) return;
+
+        const sliderContainer = document.createElement("div");
+        sliderContainer.id = "price-slider";
+        sliderContainer.style.margin = "20px 10px";
+        priceSection.insertAdjacentElement("afterend", sliderContainer);
+
+        const fromPriceInput = document.querySelector('input[name="price_min"]');
+        const toPriceInput = document.querySelector('input[name="price_max"]');
+        if (!fromPriceInput || !toPriceInput) return;
+
+        noUiSlider.create(sliderContainer, {
+            start: [parseFloat(fromPriceInput.value) || 0, parseFloat(toPriceInput.value) || 5000],
+            connect: true,
+            direction: "{{ session.locale.language.direction }}",
+            range: { 'min': 0, 'max': 2000 },
+            step: 10,
+        });
+
+        sliderContainer.noUiSlider.on("update", (values) => {
+            fromPriceInput.value = Math.round(values[0]);
+            toPriceInput.value = Math.round(values[1]);
+        });
+
+        const updateSlider = () => {
+            sliderContainer.noUiSlider.set([fromPriceInput.value, toPriceInput.value]);
+        };
+
+        fromPriceInput.addEventListener("change", updateSlider);
+        toPriceInput.addEventListener("change", updateSlider);
+    });
+</script>
 {% endblock %}

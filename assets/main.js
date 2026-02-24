@@ -2,8 +2,6 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable no-console */
-var fixed_header;
-var sticky;
 var cart_products = [];
 
 function handleLoginAction(redirectTo = "", addToUrl = true) {
@@ -43,27 +41,6 @@ function handleGiftCardClick() {
     typeof window.gift_dialog.open === "function"
   ) {
     window.gift_dialog.open();
-  }
-}
-
-window.onscroll = () => fixed_header_to_top();
-
-function menuFiixedHeader() {
-  fixed_header = document.getElementById("fixed-header");
-  sticky = fixed_header?.offsetTop;
-}
-
-function fixed_header_to_top() {
-  if (window.pageYOffset > sticky) {
-    if (fixed_header) {
-      fixed_header.classList.add("sticky");
-      $(".app-content").addClass("app-content-padded");
-    }
-  } else {
-    if (fixed_header) {
-      fixed_header.classList.remove("sticky");
-      $(".app-content").removeClass("app-content-padded");
-    }
   }
 }
 
@@ -1205,25 +1182,6 @@ function toggleProductAttributeMobile() {
   }
 }
 
-var fixed_header;
-var sticky;
-
-window.onscroll = () => fixed_header_to_top();
-
-function fixed_header_to_top() {
-  const scrollLimit = window.innerWidth < 576 ? 150 : 300;
-
-  if (window.scrollY > scrollLimit) {
-    if (fixed_header) {
-      fixed_header.classList.add("sticky");
-    }
-  } else {
-    if (fixed_header) {
-      fixed_header.classList.remove("sticky");
-    }
-  }
-}
-
 document.addEventListener("DOMContentLoaded", () => {
   const logoHTML = document.getElementById("menu-logo").innerHTML;
   const menuSecondary = document.getElementById("menu-secondary").innerHTML;
@@ -1256,3 +1214,30 @@ document.addEventListener("DOMContentLoaded", () => {
     api.open();
   });
 });
+
+
+
+var fixed_header;
+var sticky;
+
+
+window.onscroll = () => fixed_header_to_top();
+
+function menuFiixedHeader() {
+  fixed_header = document.getElementById("fixed-header");
+  sticky = fixed_header.offsetTop;
+}
+
+function fixed_header_to_top() {
+    const scrollLimit = window.innerWidth < 576 ? 150 : 300;
+
+    if (window.scrollY > scrollLimit) {
+        if (fixed_header) {
+            fixed_header.classList.add("sticky");
+        }
+    } else {
+        if (fixed_header) {
+            fixed_header.classList.remove("sticky");
+        }
+    }
+}

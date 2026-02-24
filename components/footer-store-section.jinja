@@ -370,8 +370,30 @@
                 <div class="tp-footer-copyright">
                     {{ store.settings.branding.copyrights | safe }}
                 </div>
+                
                 {% if not ('hide_language' in header_settings.header_options) %}
-                <div class="language-currency-btn" data-bs-toggle="modal" data-bs-target="#langCurrecyModal">
+                <div class="language-currency-btn circle-icon" data-bs-toggle="modal" data-bs-target="#langCurrecyModal">
+                    {% if session.lang.code == 'en' %}
+                    {% set change_to_lang_name = 'العربية' %}
+                    {% else %}
+                    {% set change_to_lang_name = 'English' %}
+                    {% endif %}
+                    <div class="lang-currency-display">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewbox="0 0 15 16" fill="none">
+                            <path
+                                d="M7.5 13.625C10.1204 13.625 12.3222 11.8333 12.9473 9.40809M7.5 13.625C4.87964 13.625 2.67776 11.8333 2.05269 9.40809M7.5 13.625C9.0533 13.625 10.3125 11.1066 10.3125 8C10.3125 4.8934 9.0533 2.375 7.5 2.375M7.5 13.625C5.9467 13.625 4.6875 11.1066 4.6875 8C4.6875 4.8934 5.9467 2.375 7.5 2.375M7.5 2.375C9.60324 2.375 11.4369 3.52934 12.4019 5.23903M7.5 2.375C5.39676 2.375 3.56312 3.52934 2.59808 5.23903M12.4019 5.23903C11.0873 6.37524 9.37392 7.0625 7.5 7.0625C5.62608 7.0625 3.91267 6.37524 2.59808 5.23903M12.4019 5.23903C12.8623 6.05464 13.125 6.99664 13.125 8C13.125 8.48624 13.0633 8.95807 12.9473 9.40809M12.9473 9.40809C11.3334 10.303 9.47618 10.8125 7.5 10.8125C5.52382 10.8125 3.66664 10.303 2.05269 9.40809M2.05269 9.40809C1.9367 8.95807 1.875 8.48624 1.875 8C1.875 6.99664 2.1377 6.05464 2.59808 5.23903"
+                                stroke="currentColor" stroke-width="0.75" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+                        <span>{{ change_to_lang_name }}</span>
+                        <em>|</em>
+                        <span>{{ session.country.name }}</span>
+                    </div>
+                </div>
+                {% endif %}
+
+                {% if ('hide_country' not in safeget(settings, "header_options", [])) or (multiple_languages and 'hide_language' not in safeget(settings, "header_options", [])) %}
+                <div class="language-currency-btn circle-icon" onclick="zidOpenRegionSettingDialog()">
                     {% if session.lang.code == 'en' %}
                     {% set change_to_lang_name = 'العربية' %}
                     {% else %}
